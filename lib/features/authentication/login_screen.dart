@@ -1,5 +1,6 @@
 import 'package:creature_keeper/features/authentication/bloc/authentication_bloc.dart';
 import 'package:creature_keeper/scaffold_messanger.dart';
+import 'package:creature_keeper/screens/deskboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,9 +30,10 @@ class _LogInScreenState extends State<LogInScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => DetailsScreen(
-                      email: emailController.text,
-                    )),
+                builder: (context) => const DeskBoardScreen() //DetailsScreen(
+                //email: emailController.text,
+                //)
+                ),
           );
         }
       }, builder: (context, state) {

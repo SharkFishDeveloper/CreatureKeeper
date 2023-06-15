@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreenReal extends StatelessWidget {
-  const HomeScreenReal({super.key});
+class DeskBoardScreen extends StatelessWidget {
+  const DeskBoardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text("On the next page")),
+      body: Text("DeskBoard screen"),
     );
   }
 }

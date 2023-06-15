@@ -21,20 +21,17 @@ class AuthenticationBloc
     final FireBaseAuthMethods authmethods =
         FireBaseAuthMethods(FirebaseAuth.instance); //! call repository
     //?emit(AuthenticationLoadingState());
-    final bool isVerified = false;
-
+    emit(AuthenticationLoadingState());
     try {
       await authmethods.signUpWithEmail(
         email: event.email,
         password: event.password,
         context: event.context,
       );
+      emit(AuthenticationSuccessState());
     } catch (e) {
-      // emit(AuthenticationErrorState(
-      //     errorMessage: e.toString()));
-      // emit(AuthenticationErrorState(
-      //     errorMessage: e.toString(), context: event.context));
       showSnackBar(event.context, e.toString());
+      emit(AuthenticationInitial());
     }
   }
 
