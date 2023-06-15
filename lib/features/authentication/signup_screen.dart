@@ -4,6 +4,8 @@ import 'package:creature_keeper/scaffold_messanger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../screens/details_screen.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
   @override
@@ -22,8 +24,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
         title: const Text('Sign Up page'),
         backgroundColor: Colors.teal,
       ),
-      body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-          builder: (context, state) {
+      body: BlocConsumer<AuthenticationBloc, AuthenticationState>(
+          listener: (context, state) {
+        if (state is AuthenticationSuccessState) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailsScreen(
+                      email: emailController.text,
+                    )),
+          );
+        }
+      }, builder: (context, state) {
         return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -60,7 +72,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         password: passwordController.text,
                         context: context));
                   },
-                  child: const Text('Sign Up'),
+                  child: state is AuthenticationLoadingState
+                      ? const SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: CircularProgressIndicator(color: Colors.white),
+                        )
+                      : const Text('Sign Up'),
                 ),
                 const SizedBox(
                   height: 190,
@@ -71,7 +89,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LogInScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const LogInScreen()),
                       );
                     },
                     child: const Text(

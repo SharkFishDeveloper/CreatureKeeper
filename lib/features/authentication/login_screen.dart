@@ -3,7 +3,7 @@ import 'package:creature_keeper/scaffold_messanger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../screens/home_screen_real.dart';
+import '../../screens/details_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -28,7 +28,10 @@ class _LogInScreenState extends State<LogInScreen> {
         if (state is AuthenticationSuccessState) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreenReal()),
+            MaterialPageRoute(
+                builder: (context) => DetailsScreen(
+                      email: emailController.text,
+                    )),
           );
         }
       }, builder: (context, state) {
