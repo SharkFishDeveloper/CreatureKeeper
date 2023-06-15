@@ -37,7 +37,7 @@ class UserModalBloc extends Bloc<UserModalEvent, UserModalState> {
           bio: " ");
       await firestore
           .collection('users')
-          .doc(currentUser!.uid)
+          .doc(currentUser.uid)
           .set(userModal.toMap());
 
       emit(NewUserModalSuccessState()); //!throw success state
