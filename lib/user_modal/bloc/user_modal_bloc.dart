@@ -41,6 +41,9 @@ class UserModalBloc extends Bloc<UserModalEvent, UserModalState> {
           .set(userModal.toMap());
 
       emit(NewUserModalSuccessState()); //!throw success state
+      print("After it is usermodal transfer");
+      emit(StoredUserModalFromDetailsScreen(userModal)); //! error causing
+      print("THIS IS THE UID OF USER, LISTEN CAREFULLY -> ${currentUser.uid}");
     } catch (e) {
       showSnackBar(event.context, e.toString());
       emit(UserModalInitial());

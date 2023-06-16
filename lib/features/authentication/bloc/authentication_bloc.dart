@@ -46,7 +46,12 @@ class AuthenticationBloc
         password: event.password,
         context: event.context,
       );
+      User? currentUser = FirebaseAuth.instance.currentUser; //!change1
+      //!change2
+      print("THIS IS THE UID OF LOGGED IN USER -> ${currentUser?.uid}");
       emit(AuthenticationSuccessState());
+
+      //! again here comes error, tryin to find uid of loged in person
     } catch (e) {
       showSnackBar(event.context, e.toString());
       emit(AuthenticationInitial());
